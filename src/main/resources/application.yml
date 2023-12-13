@@ -1,0 +1,28 @@
+server:
+  port: 8282
+
+mybatis:
+  config: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml
+
+# Database 연동 설정
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/weather?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: hnjang
+    password: Abcd123@
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+      write-date-timestamps-as-nanoseconds: false
+
+
+logging:
+  level:
+    com.boardproject.board.controller.HomeController: INFO
