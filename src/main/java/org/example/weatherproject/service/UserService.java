@@ -17,5 +17,10 @@ public class UserService {
         return userMapper.getUserList();
     }
 
+    public boolean authenticateUser(String user_id, String passwd){
+        User user = userMapper.getUserByUserId(user_id);
+        return user != null && user.getPasswd().equals(passwd);
+    }
+
 
 }

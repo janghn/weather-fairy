@@ -9,4 +9,13 @@
             test;
     </select>
 
+    <select id="getUserByUserId" resultType="org.example.weatherproject.dto.User">
+        SELECT
+            *
+        FROM
+            test
+        WHERE
+            user_id = #{user_id}
+    </select>
+
 </mapper>
