@@ -25,4 +25,4 @@ spring:
 
 logging:
   level:
-    org.example.weatherproject.controller.UserController: DEBUG
+    org.example.weatherproject.controller.UserApiController: DEBUG

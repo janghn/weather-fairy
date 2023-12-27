@@ -3,7 +3,6 @@ package org.example.weatherproject.controller;
 import lombok.RequiredArgsConstructor;
 import org.example.weatherproject.dto.User;
 import org.example.weatherproject.service.UserService;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
@@ -11,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-public class UserController {
+public class UserApiController {
 
     private final UserService userService;
 
@@ -20,17 +19,17 @@ public class UserController {
         return userService.getUserList();
     }
 
-    @GetMapping("/login")
+    /*@GetMapping("/login")
     public String login(){
         return "login";
-    }
+    }*/
 
     @PostMapping("/home")
     public String home(@ModelAttribute User user, HttpSession session){
-        String user_id = user.getUser_id();
-        String passwd = user.getPasswd();
-        if (userService.authenticateUser(user_id,passwd)){
-            session.setAttribute("loginUser",user_id);
+        String userId = user.getUserId();
+        String userPw = user.getUserPw();
+        if (userService.authenticateUser(userId,userPw)){
+            session.setAttribute("loginUser",userId);
             return "main";
         }else {
             return "login";
