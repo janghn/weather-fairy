@@ -16,7 +16,7 @@ public class UserViewController {
         return "signup";
     }
 
-    @PostMapping("/main")
+    @GetMapping("/main")
     public String main(){
         return "main";
     }

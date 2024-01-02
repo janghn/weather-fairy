@@ -39,7 +39,6 @@ public class UserService {
 
             return userMapper.userJoin(user);
 
-
         }catch (Exception e){
             logger.error("회원가입 중 오류 발생: " + e.getMessage());
             throw new RuntimeException("회원가입 중 오류 발생");

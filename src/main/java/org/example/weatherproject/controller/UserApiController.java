@@ -5,13 +5,14 @@ import org.example.weatherproject.dto.User;
 import org.example.weatherproject.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
-@RestController
+@Controller
 @RequiredArgsConstructor
 public class UserApiController {
 
@@ -31,18 +32,16 @@ public class UserApiController {
         if (userService.authenticateUser(USER_ID,USER_PW)){
             logger.info("로그인 시작 : UserApiController == " +  USER_ID);
             session.setAttribute("loginUser",USER_ID);
-            return "main";
+            return "redirect:/main";
         }else {
-            return "login";
+            return "redirect:/login";
         }
     }
 
     @PostMapping("/join")
     public String userJoin(User user){
-
-
         userService.userJoin(user);
-        return "main";
+        return "redirect:/login";
     }
 
 
