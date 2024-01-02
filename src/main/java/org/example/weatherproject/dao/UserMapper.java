@@ -9,5 +9,7 @@ import java.util.List;
 public interface UserMapper {
     List<User> getUserList();
 
-    User getUserByUserId(String user_id);
+    User getUserByUserId(String USER_ID);
+
+    int userJoin(User user);
 }

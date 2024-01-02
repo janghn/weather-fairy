@@ -6,16 +6,40 @@
         SELECT
             *
         FROM
-            test;
+            user;
     </select>
 
     <select id="getUserByUserId" resultType="org.example.weatherproject.dto.User">
         SELECT
             *
         FROM
-            test
+            user
         WHERE
             user_id = #{user_id}
     </select>
+
+    <insert id="userJoin" parameterType="org.example.weatherproject.dto.User">
+        INSERT INTO user(
+            USER_ID,
+            USER_PW,
+            MY_LEVEL,
+            MY_POINT,
+            USER_NAME,
+            CREATE_DATE,
+            UPDATE_DATE,
+            TRY_COUNT,
+            CORRECT_COUNT
+        ) VALUES (
+            #{USER_ID},
+            #{USER_PW},
+            #{MY_LEVEL},
+            #{MY_POINT},
+            #{USER_NAME},
+            #{CREATE_DATE},
+            #{UPDATE_DATE},
+            #{TRY_COUNT},
+            #{CORRECT_COUNT}
+        )
+    </insert>
 
 </mapper>
