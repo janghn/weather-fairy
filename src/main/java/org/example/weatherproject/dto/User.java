@@ -2,6 +2,7 @@ package org.example.weatherproject.dto;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import java.time.LocalDateTime;
 
@@ -18,5 +19,14 @@ public class User {
     private LocalDateTime UPDATE_DATE;
     private int TRY_COUNT;
     private int CORRECT_COUNT;
+
+    public void hashUSER_PW(){
+        this.USER_PW = hashpassword(USER_PW);
+        this.CREATE_DATE = LocalDateTime.now();
+    }
+
+    private String hashpassword(String USER_PW){
+        return BCrypt.hashpw(USER_PW, BCrypt.gensalt());
+    }
 
 }

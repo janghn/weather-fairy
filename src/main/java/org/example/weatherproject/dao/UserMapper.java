@@ -12,4 +12,6 @@ public interface UserMapper {
     User getUserByUserId(String USER_ID);
 
     int userJoin(User user);
+
+    int userIdExists(String USER_ID);
 }

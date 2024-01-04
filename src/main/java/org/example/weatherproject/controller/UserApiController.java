@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -34,15 +35,16 @@ public class UserApiController {
             session.setAttribute("loginUser",USER_ID);
             return "redirect:/main";
         }else {
+            logger.info("로그인 실패 : 아이디 또는 비밀번호가 일치하지 않습니다 {} ", USER_ID);
             return "redirect:/login";
         }
     }
 
     @PostMapping("/join")
-    public String userJoin(User user){
-        userService.userJoin(user);
-        return "redirect:/login";
-    }
+    public String userJoin(User user, Model model) {
+        logger.info("회원가입 시작한다 {} ", user.getUSER_ID());
 
+        return userService.userJoin(user, model);
+    }
 
 }

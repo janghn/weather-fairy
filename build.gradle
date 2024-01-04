@@ -24,7 +24,29 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
 
+
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf' // 타임리프
+
+    testAnnotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.projectlombok:lombok'
+
+    implementation "org.mybatis:mybatis:3.5.8"
+    implementation "org.mybatis:mybatis-spring:2.0.6"
+
+    implementation 'org.springframework:spring-jdbc:5.3.10'
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.4'
+    implementation 'mysql:mysql-connector-java:8.0.23'
+
+    implementation 'org.hibernate:hibernate-core:5.5.6.Final'
+
+    runtimeOnly 'mysql:mysql-connector-java'
+    compileOnly 'org.projectlombok:lombok:1.18.22'
+    annotationProcessor 'org.projectlombok:lombok:1.18.22'
+
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+    testImplementation 'org.springframework.security:spring-security-test'
+
 }
 
 test {

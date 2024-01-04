@@ -42,4 +42,14 @@
         )
     </insert>
 
+    <select id="userIdExists" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT exists(
+            SELECT 1
+            FROM
+                user
+            WHERE
+                USER_ID = #{USER_ID}
+        )
+    </select>
+
 </mapper>
