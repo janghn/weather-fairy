@@ -26,18 +26,12 @@ public class UserApiController {
         return userService.getUserList();
     }
 
-    @PostMapping("/home")
-    public String home(@ModelAttribute User user, HttpSession session){
+    @PostMapping("/userlogin")
+    public String home(@ModelAttribute User user, HttpSession session, Model model){
         String USER_ID = user.getUSER_ID();
         String USER_PW = user.getUSER_PW();
-        if (userService.authenticateUser(USER_ID,USER_PW)){
-            logger.info("로그인 시작 : UserApiController == " +  USER_ID);
-            session.setAttribute("loginUser",USER_ID);
-            return "redirect:/main";
-        }else {
-            logger.info("로그인 실패 : 아이디 또는 비밀번호가 일치하지 않습니다 {} ", USER_ID);
-            return "redirect:/login";
-        }
+
+        return userService.authenticateUser(USER_ID,USER_PW, model);
     }
 
     @PostMapping("/join")

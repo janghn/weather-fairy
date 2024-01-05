@@ -29,11 +29,20 @@ public class UserService {
     /*
      *   로그인
      */
-    public boolean authenticateUser(String USER_ID, String USER_PW){
+    public String authenticateUser(String USER_ID, String USER_PW, Model model){
 
         User user = userMapper.getUserByUserId(USER_ID);
 
-        return user != null && checkPassword(USER_PW, user.getUSER_PW());
+        if (user == null){
+            model.addAttribute("error", "잘못된 아이디입니다.");
+            return "login";
+        }else if (!checkPassword(USER_PW, user.getUSER_PW())){
+            model.addAttribute("error", "비밀번호가 일치하지 않습니다.");
+            return "login";
+        }else{
+            return "main";
+        }
+
     }
 
     /*
@@ -48,14 +57,19 @@ public class UserService {
      */
     public String userJoin(User user, Model model) {
         try {
-            if (userIdExists(user)) {
+
+            String user_id = user.getUSER_ID();
+
+            if (userIdExists(user) ) {
                 logger.info("중복 아이디 조회 결과 : {} ", userIdExists(user));
-                // 중복 아이디인 경우 경고창을 띄우기 위한 메시지 생성
-                String message = "이미 존재하는 아이디입니다.";
+
                 // 메시지를 Model에 추가
-                model.addAttribute("error", message);
+                model.addAttribute("error", "이미 존재하는 아이디입니다.");
                 return "signup"; // 중복 아이디일 경우 회원가입 페이지로 이동
-            } else {
+            } else if (user_id == null || user_id.trim().isEmpty()){
+                model.addAttribute("error", "아이디를 입력해주세요.");
+                return "signup"; // 중복 아이디일 경우 회원가입 페이지로 이동
+            }else {
                 user.hashUSER_PW();
                 userMapper.userJoin(user);
                 return "redirect:/login";

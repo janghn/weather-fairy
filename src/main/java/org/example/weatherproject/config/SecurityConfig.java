@@ -34,7 +34,7 @@ public class SecurityConfig {
         return http.build();*/
         http
                 .authorizeRequests()
-                .antMatchers("/userlist", "/home","/join","/login","/signup","/main").permitAll()
+                .antMatchers("/userlist", "/userlogin","/join","/login","/signup","/main").permitAll()
 //                .antMatchers("/api/user","/login","/signup","/main").permitAll()
                 .anyRequest().authenticated()
                 .and()
